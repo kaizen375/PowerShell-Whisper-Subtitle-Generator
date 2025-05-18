@@ -74,7 +74,7 @@ You can also adjust the `$videoExtensions` array to include other video file for
 
 ## Contributing
 
-[*(Optional: Add information on how others can contribute to your script)*]
+
 
 ## Issues
 
