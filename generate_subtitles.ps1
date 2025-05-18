@@ -14,7 +14,7 @@ $whisperDirectCommand = "whisper"   # command if method is "direct" (e.g. whispe
 # --- Adjust the above based on your Whisper installation ---
 
 # Supported video formats
-$videoExtensions = @("*.mkv", "*.mp4", "*.avi", "*.mov", "*.webm")
+$videoExtensions = @("*.mkv", "*.mp4", "*.avi", "*.mov", "*.webm", "*.flv")
 
 # Script's current directory
 $scriptFolder = Split-Path -Parent $MyInvocation.MyCommand.Path
