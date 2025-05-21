@@ -93,9 +93,14 @@ foreach ($fileItem in $filesToProcess) {
 
         $detectOutputLines = $null
         if ($whisperCallMethod -eq "python_module") {
+            $env:PYTHONIOENCODING = "utf-8" # Set environment variable for Python output
             $detectOutputLines = & $whisperPythonExecutable -m whisper $detectionArgs 2>&1
+            Remove-Item Env:\PYTHONIOENCODING -ErrorAction SilentlyContinue # Remove environment variable after command
         } else {
+            $originalChcp = [console]::InputEncoding.CodePage # Store original code page
+            chcp 65001 | Out-Null # Change console to UTF-8
             $detectOutputLines = & $whisperDirectCommand $detectionArgs 2>&1
+            chcp $originalChcp | Out-Null # Restore original code page
         }
 
         if ($LASTEXITCODE -ne 0) {
@@ -168,9 +173,14 @@ foreach ($fileItem in $filesToProcess) {
 
         $subtitleGenerationOutput = $null
         if ($whisperCallMethod -eq "python_module") {
+            $env:PYTHONIOENCODING = "utf-8" # Set environment variable for Python output
             $subtitleGenerationOutput = & $whisperPythonExecutable -m whisper $subtitleArgs 2>&1
+            Remove-Item Env:\PYTHONIOENCODING -ErrorAction SilentlyContinue # Remove environment variable after command
         } else {
+            $originalChcp = [console]::InputEncoding.CodePage # Store original code page
+            chcp 65001 | Out-Null # Change console to UTF-8
             $subtitleGenerationOutput = & $whisperDirectCommand $subtitleArgs 2>&1
+            chcp $originalChcp | Out-Null # Restore original code page
         }
 
         if ($LASTEXITCODE -ne 0) {
