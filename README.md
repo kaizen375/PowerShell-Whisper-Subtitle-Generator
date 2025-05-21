@@ -46,7 +46,7 @@ Before using this script, you need to have **Whisper** installed and accessible 
 1.  **Save the Script:** Save the PowerShell code as a `.ps1` file (e.g., `generate_subtitles.ps1`).
 2.  **Configure Whisper Command:** Open the `.ps1` file in a text editor and carefully configure the **`# USER: PLEASE CONFIGURE THIS`** section at the beginning. Choose the method you used to install Whisper and set the `$whisperCallMethod`, `$whisperPythonExecutable`, and `$whisperDirectCommand` variables accordingly.
 3.  **Place in Video Directory (Optional):** You can place the script in the same directory as your video files, or in a parent directory to process videos recursively.
-4.  **Run the Script:** Open PowerShell, navigate to the directory where you saved the script, and run it using the following command:
+4.  **Run the Script (batch):** Open PowerShell, navigate to the directory where you saved the script, and run it using the following command:
     ```powershell
     powershell -ExecutionPolicy Bypass -File .\generate_subtitles.ps1
     ```
@@ -54,7 +54,12 @@ Before using this script, you need to have **Whisper** installed and accessible 
     * `powershell`: Invokes the PowerShell executable.
     * `-ExecutionPolicy Bypass`: Temporarily bypasses the PowerShell execution policy to allow the script to run.
     * `-File .\generate_subtitles.ps1`: Specifies the path to your script file.
-5.  **Subtitles Generated:** The script will process all supported video files in the current directory (and subdirectories if you don't modify the `Get-ChildItem` command) that do not already have a corresponding `.srt` file. The generated subtitle files (`.srt`) will be saved in the same directory as their respective video files.
+5. **Run the Script (single file):** Open PowerShell, navigate to the directory where you saved the script, and run it using the following command:
+Provide the full path to your video file using the `-SingleFilePath` parameter:
+```powershell
+powershell -ExecutionPolicy Bypass -File .\generate_subtitles.ps1 -SingleFilePath "C:\Path\To\Your\Video\MyMovie.mp4"
+```
+6.  **Subtitles Generated:** The script will process all supported video files in the current directory (and subdirectories if you don't modify the `Get-ChildItem` command) that do not already have a corresponding `.srt` file. The generated subtitle files (`.srt`) will be saved in the same directory as their respective video files.
 
 **Important Note on Execution Policy:** You might be able to change the default execution policy for your user or the entire system using the `Set-ExecutionPolicy` cmdlet. However, using `Bypass` in the command line is a common way to run a specific script without altering the global or user policy. If you frequently run your own scripts, you might consider setting a less restrictive policy for your user (e.g., `RemoteSigned`), but understand the security implications before doing so.
 
